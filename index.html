@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profinca Jireth - Catálogo & Pedidos por WhatsApp</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Profinca Jireth - Carnes frescas al peso, cerdo, pollo, res y víveres directo a tu casa. Realiza tu pedido fácil y rápido por WhatsApp.">
+    <meta name="keywords" content="Profinca, carnes, cerdo, pollo, res, víveres, butchery, domicilio, WhatsApp order">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#72796e",
+                        "surface-container-highest": "#e4e4cc",
+                        "background": "#fbfbe2",
+                        "surface-dim": "#dbdcc3",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#3b6934",
+                        "primary-container": "#2d5a27",
+                        "on-secondary-container": "#773310",
+                        "surface-container-high": "#eaead1",
+                        "surface": "#fbfbe2",
+                        "on-surface": "#1b1d0e",
+                        "surface-variant": "#e4e4cc",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#944925",
+                        "outline-variant": "#c2c9bb",
+                        "surface-container-low": "#f5f5dc",
+                        "on-background": "#1b1d0e",
+                        "primary": "#154212",
+                        "on-surface-variant": "#42493e",
+                        "surface-container": "#efefd7",
+                        "brand-yellow": "#ffed00",
+                        "brand-red": "#e31837",
+                        "brand-whatsapp": "#25D366"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Montserrat", "sans-serif"],
+                        "headline-md": ["Montserrat", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "price-display": ["Inter", "sans-serif"],
+                        "label-bold": ["Inter", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #f5f5dc;
+            color: #1b1d0e;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .pb-safe { 
+            padding-bottom: env(safe-area-inset-bottom, 20px); 
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #efefd7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c9bb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #944925;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-toast {
+            animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-yellow-200 selection:text-black">
+
+    <!-- Top Header -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-[#ffed00] border-b border-yellow-400 shadow-sm transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex justify-between items-center">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center gap-3">
+                <a href="#" class="flex items-center gap-2 group">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvKHoonA2Bmc60zNGUTLVhPY_e4r9SnjGF5jeQNK_nc5oQObeIRVG-ldyqyeDAwFnqWZZ-qOZELICXOPHKn3dDZkCj0bJlc-ExM__syxNQDX0CvgpDb8MglPadNn4i13kMOlyGXQvEDtoYYtCPnUyI-GydArkJzVnhfKpV7eipg3_O_NxtDjr3jpa29bnSID1NHBYZWiTKlTlVg6bnrDD6cAVOqe6H941kFmn1AvN-OCwmPKZ_uB5e77VHEIwNm3MjMQ" 
+                         alt="Profinca Jireth Logo" 
+                         class="h-10 md:h-12 w-auto object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-200">
+                </a>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-2 md:gap-3">
+                <button onclick="toggleInfoModal()" class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/10 hover:bg-black/20 text-black text-xs md:text-sm font-semibold transition-colors">
+                    <span class="material-symbols-outlined text-lg">schedule</span>
+                    <span>7am - 6pm</span>
+                </button>
+
+                <!-- NEW BUTTON: "Más sobre nosotros" -->
+                <button onclick="openWrappedModal()" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-black text-[#ffed00] hover:bg-neutral-800 text-xs md:text-sm font-bold transition-all shadow-sm border border-yellow-400 group">
+                    <span class="material-symbols-outlined text-lg text-[#ffed00] group-hover:rotate-12 transition-transform">auto_awesome</span>
+                    <span class="hidden sm:inline">Más sobre nosotros</span>
+                    <span class="sm:hidden">Nosotros</span>
+                </button>
+
+                <button onclick="toggleInfoModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black text-white hover:bg-neutral-800 text-xs md:text-sm font-semibold transition-colors shadow-sm">
+                    <span class="material-symbols-outlined text-lg text-[#ffed00]">location_on</span>
+                    <span class="hidden md:inline">Ubicación & Mapas</span>
+                    <span class="md:hidden">Sede</span>
+                </button>
+
+                <button onclick="toggleCartDrawer()" class="relative flex items-center justify-center p-2 rounded-full bg-[#e31837] text-white hover:bg-red-700 transition-colors shadow-sm" title="Ver Carrito">
+                    <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+                    <span id="headerCartBadge" class="absolute -top-1 -right-1 bg-black text-[#ffed00] text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#ffed00] hidden">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20 pb-36 md:pb-24 px-4 md:px-8 max-w-7xl mx-auto w-full flex flex-col gap-6">
+
+        <!-- Hero Banner -->
+        <section class="relative w-full h-44 sm:h-64 md:h-80 rounded-2xl overflow-hidden shadow-md mt-2 group">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
+                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDz3iYCWYw76qjQjjR0KfIa14KPH0lJL7PUdNM_g45L4A_VOaIV0qe5SfMyxHvPv9vN2u2ILjkJ6sV7wAlB-62ttQVwLiu3xSSLUDT5jSM3lxN7AMmuhEvd6FrrL_Yn_w7eu8794eKMyOQ6swvYIdn32UivTJTBSr5zMozaQvQKCiwgMY4ME6TwEiZUuUSVE9Rg6eWolH6ScR3bJT2LjLNEFdbyUu8rr8RQaMirYtICx7SK76IGRQ0m');">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-5 md:p-8">
+                <span class="inline-block px-3 py-1 bg-[#ffed00] text-black font-extrabold text-xs uppercase tracking-wider rounded-md self-start mb-2 shadow">
+                    Profinca Jireth • Carnicería & Víveres
+                </span>
+                <h1 class="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold font-headline-lg max-w-2xl leading-tight drop-shadow-sm">
+                    Carnes frescas al peso, directo a tu casa
+                </h1>
+                <p class="text-neutral-200 text-xs sm:text-sm mt-1 max-w-xl hidden sm:block">
+                    Selección premium de cerdo, pollo, res y víveres. Haz tu pedido y coordina tu entrega directa por WhatsApp en segundos.
+                </p>
+            </div>
+        </section>
+
+        <!-- Search Bar & Category Filters -->
+        <section class="flex flex-col md:flex-row gap-3 justify-between items-stretch md:items-center bg-white p-3 md:p-4 rounded-xl shadow-sm border border-neutral-200">
+            <nav class="flex gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-hide flex-grow" id="categoryNav">
+                <button onclick="filterCategory('todos')" data-category="todos" 
+                        class="tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-[#ffed00] text-black shadow-sm">
+                    Todos
+                </button>
+                <button onclick="filterCategory('Línea Cerdo')" data-category="Línea Cerdo" 
+                        class="tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200">
+                    🐷 Línea Cerdo
+                </button>
+                <button onclick="filterCategory('Línea Pollo')" data-category="Línea Pollo" 
+                        class="tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200">
+                    🐔 Línea Pollo
+                </button>
+                <button onclick="filterCategory('Línea Res')" data-category="Línea Res" 
+                        class="tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200">
+                    🥩 Línea Res
+                </button>
+                <button onclick="filterCategory('Línea Comidas Rápidas')" data-category="Línea Comidas Rápidas" 
+                        class="tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200">
+                    🍔 Comidas Rápidas & Víveres
+                </button>
+            </nav>
+
+            <div class="relative min-w-[240px] md:min-w-[280px]">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">search</span>
+                <input type="text" 
+                       id="searchInput" 
+                       oninput="handleSearch()"
+                       placeholder="Buscar por nombre o código (ej: P162)..." 
+                       class="w-full pl-10 pr-4 py-2 bg-neutral-50 border border-neutral-300 rounded-full text-sm font-medium focus:bg-white focus:border-[#e31837] focus:ring-1 focus:ring-[#e31837] outline-none transition-all">
+            </div>
+        </section>
+
+        <!-- Product Grid Header -->
+        <div class="flex justify-between items-center px-1">
+            <h2 id="currentCategoryTitle" class="text-xl font-bold font-headline-md text-neutral-900">
+                Todos los Productos
+            </h2>
+            <span id="productCountBadge" class="text-xs font-semibold text-neutral-500 bg-neutral-200/80 px-2.5 py-1 rounded-full">
+                0 productos
+            </span>
+        </div>
+
+        <!-- Dynamic Product Catalog Grid -->
+        <section id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+        </section>
+
+        <!-- Empty Results -->
+        <div id="noResults" class="hidden flex-col items-center justify-center py-16 text-center bg-white rounded-2xl p-8 border border-dashed border-neutral-300">
+            <span class="material-symbols-outlined text-6xl text-neutral-300 mb-2">search_off</span>
+            <h3 class="text-lg font-bold text-neutral-700">No encontramos productos</h3>
+            <p class="text-sm text-neutral-500 max-w-md mt-1">Intenta buscar con otros términos o cambia la categoría seleccionada.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-[#ffed00] text-black font-bold text-sm rounded-full hover:bg-yellow-400 transition-colors">
+                Ver todos los productos
+            </button>
+        </div>
+
+        <!-- Inline Checkout Section -->
+        <section id="checkoutSection" class="mt-8 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-neutral-200">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-neutral-100">
+                <span class="material-symbols-outlined text-3xl text-[#e31837]">shopping_bag</span>
+                <div>
+                    <h2 class="text-2xl font-bold font-headline-md text-neutral-900">Finalizar Pedido</h2>
+                    <p class="text-xs text-neutral-500">Completa tus datos para enviar tu lista directamente al WhatsApp de Profinca Jireth.</p>
+                </div>
+            </div>
+
+            <form id="checkoutForm" onsubmit="handleWhatsAppSubmit(event)" class="space-y-6">
+                <div>
+                    <label for="customerName" class="block text-sm font-bold text-neutral-800 mb-1.5">
+                        Nombre completo del cliente <span class="text-[#e31837]">*</span>
+                    </label>
+                    <input type="text" 
+                           id="customerName" 
+                           required 
+                           placeholder="Ej: Juan Pérez" 
+                           class="w-full bg-neutral-50 border border-neutral-300 rounded-xl p-3 text-sm font-medium focus:bg-white focus:border-[#e31837] focus:ring-2 focus:ring-red-100 outline-none transition-all">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-3">
+                        <label class="block text-sm font-bold text-neutral-800">
+                            Modalidad de Entrega <span class="text-[#e31837]">*</span>
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all border-[#e31837] bg-red-50/50" id="labelDelivery">
+                                <input type="radio" name="deliveryMethod" value="Domicilio" checked onchange="toggleDeliveryMode('Domicilio')" class="hidden">
+                                <span class="material-symbols-outlined text-2xl text-[#e31837] mb-1">local_shipping</span>
+                                <span class="text-xs font-bold text-[#e31837]">Domicilio</span>
+                            </label>
+
+                            <label class="relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all border-neutral-200 bg-neutral-50 hover:bg-neutral-100" id="labelPickup">
+                                <input type="radio" name="deliveryMethod" value="Recoger en Tienda" onchange="toggleDeliveryMode('Recoger en Tienda')" class="hidden">
+                                <span class="material-symbols-outlined text-2xl text-neutral-600 mb-1">storefront</span>
+                                <span class="text-xs font-bold text-neutral-700">Recoger en Tienda</span>
+                            </label>
+                        </div>
+
+                        <div id="addressContainer" class="mt-3">
+                            <label for="deliveryAddress" class="block text-xs font-bold text-neutral-700 mb-1">
+                                Dirección de Envío <span class="text-[#e31837]">*</span>
+                            </label>
+                            <input type="text" 
+                                   id="deliveryAddress" 
+                                   required 
+                                   placeholder="Ej: Calle 45 # 12 - 34, Apt 201, Barrio Centro" 
+                                   class="w-full bg-neutral-50 border border-neutral-300 rounded-xl p-3 text-sm font-medium focus:bg-white focus:border-[#e31837] focus:ring-2 focus:ring-red-100 outline-none transition-all">
+                        </div>
+
+                        <div id="pickupNotice" class="hidden p-3 bg-yellow-50 border border-yellow-200 rounded-xl text-xs text-yellow-800 flex items-start gap-2">
+                            <span class="material-symbols-outlined text-lg text-yellow-600 flex-shrink-0">info</span>
+                            <div>
+                                <strong class="font-bold">Dirección de la Tienda:</strong> Sede Física Profinca Jireth. Te esperaremos para entregarte tu pedido recién preparado.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="block text-sm font-bold text-neutral-800">
+                            Método de Pago <span class="text-[#e31837]">*</span>
+                        </label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 cursor-pointer transition-colors">
+                                <input type="radio" name="paymentMethod" value="Nequi" checked class="text-[#e31837] focus:ring-[#e31837]">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-purple-700">account_balance_wallet</span>
+                                    <span class="text-sm font-bold text-neutral-800">Nequi</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 cursor-pointer transition-colors">
+                                <input type="radio" name="paymentMethod" value="Efectivo" class="text-[#e31837] focus:ring-[#e31837]">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-green-600">payments</span>
+                                    <span class="text-sm font-bold text-neutral-800">Efectivo</span>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 cursor-pointer transition-colors">
+                                <input type="radio" name="paymentMethod" value="Datáfono" class="text-[#e31837] focus:ring-[#e31837]">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-blue-600">credit_card</span>
+                                    <span class="text-sm font-bold text-neutral-800">Datáfono al entregar</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-neutral-50 rounded-xl border border-neutral-200 flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <div>
+                        <span class="text-xs font-semibold text-neutral-500 block">Resumen del Pedido</span>
+                        <span id="checkoutSummaryText" class="text-sm font-bold text-neutral-800">0 productos seleccionados</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-semibold text-neutral-500 block">Total Estimado</span>
+                        <span id="checkoutTotalAmount" class="text-2xl font-extrabold text-[#e31837]">$0</span>
+                    </div>
+                </div>
+
+                <button type="submit" 
+                        class="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 px-6 rounded-xl font-bold text-lg shadow-lg hover:bg-[#20bd5a] hover:shadow-xl active:scale-[0.99] transition-all duration-200">
+                    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    <span>Enviar pedido por WhatsApp</span>
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Floating Shopping Cart Bar -->
+    <div id="floatingCartBar" class="fixed bottom-14 md:bottom-6 left-0 w-full px-4 z-30 transition-all duration-300 transform translate-y-0">
+        <div class="bg-black/95 text-white rounded-2xl shadow-xl p-3 sm:p-4 flex justify-between items-center max-w-4xl mx-auto backdrop-blur-md border border-neutral-800">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <span class="material-symbols-outlined text-2xl text-[#ffed00]">shopping_basket</span>
+                    <span id="floatingCartBadge" class="absolute -top-2 -right-2 bg-[#e31837] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                        0
+                    </span>
+                </div>
+                <div>
+                    <span id="floatingItemCount" class="text-xs sm:text-sm font-bold block text-neutral-200">0 ítems</span>
+                    <span class="text-[10px] text-neutral-400 hidden sm:block">Envío por WhatsApp</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <div class="text-right">
+                    <span class="text-[10px] uppercase text-neutral-400 block tracking-wider">Total</span>
+                    <span id="floatingTotalPrice" class="text-base sm:text-xl font-extrabold text-[#ffed00] font-price-display">$0</span>
+                </div>
+                <button onclick="toggleCartDrawer()" class="bg-[#ffed00] hover:bg-yellow-400 text-black px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all shadow-sm flex items-center gap-1.5">
+                    <span>Ver Carrito</span>
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide-Over Shopping Cart Drawer -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 transition-opacity duration-300 opacity-0 pointer-events-none"></div>
+    
+    <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl flex flex-col transition-transform duration-300 transform translate-x-full">
+        <div class="p-4 bg-[#ffed00] border-b border-yellow-400 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-2xl text-black">shopping_cart</span>
+                <h3 class="font-bold font-headline-md text-lg text-black">Tu Carrito de Compras</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="p-1 rounded-full hover:bg-black/10 text-black transition-colors">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+        </div>
+
+        <div id="cartItemsList" class="flex-grow overflow-y-auto p-4 space-y-3 divide-y divide-neutral-100">
+        </div>
+
+        <div class="p-4 bg-neutral-50 border-t border-neutral-200 space-y-3">
+            <div class="space-y-1 text-sm">
+                <div class="flex justify-between text-neutral-600">
+                    <span>Subtotal:</span>
+                    <span id="drawerSubtotal" class="font-bold">$0</span>
+                </div>
+                <div class="flex justify-between text-neutral-600">
+                    <span>Entrega:</span>
+                    <span class="text-xs font-semibold text-green-700 bg-green-100 px-2 py-0.5 rounded">Por acordar en WhatsApp</span>
+                </div>
+                <div class="flex justify-between text-lg font-extrabold text-neutral-900 pt-2 border-t border-neutral-200">
+                    <span>Total Estimado:</span>
+                    <span id="drawerTotal" class="text-[#e31837]">$0</span>
+                </div>
+            </div>
+
+            <button onclick="scrollToCheckout()" class="w-full bg-[#e31837] hover:bg-red-700 text-white font-bold py-3.5 px-4 rounded-xl text-center flex items-center justify-center gap-2 transition-colors shadow">
+                <span>Proceder al Checkout</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Info & Geolocation Modal -->
+    <div id="infoModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-6 relative transform transition-transform duration-300 scale-95" id="infoModalContainer">
+            
+            <button onclick="toggleInfoModal()" class="absolute top-4 right-4 p-1 text-neutral-400 hover:text-neutral-700 rounded-full hover:bg-neutral-100">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <div class="flex items-center gap-3">
+                <div class="p-3 bg-yellow-100 text-yellow-800 rounded-2xl">
+                    <span class="material-symbols-outlined text-3xl">store</span>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-xl text-neutral-900">Profinca Jireth</h3>
+                    <p class="text-xs text-neutral-500">Carnicería & Víveres de Alta Calidad</p>
+                </div>
+            </div>
+
+            <div class="bg-neutral-50 p-4 rounded-xl border border-neutral-200 space-y-2">
+                <div class="flex items-center gap-2 text-sm font-bold text-neutral-800">
+                    <span class="material-symbols-outlined text-base text-[#e31837]">schedule</span>
+                    <span>Horarios de Atención</span>
+                </div>
+                <div class="text-xs text-neutral-600 space-y-1 pl-6">
+                    <div class="flex justify-between">
+                        <span>Lunes a Sábado:</span>
+                        <strong class="text-neutral-800">7:00 AM - 6:00 PM</strong>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Domingos y Festivos:</span>
+                        <strong class="text-neutral-800">8:00 AM - 1:00 PM</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <label class="block text-xs font-bold text-neutral-700 uppercase tracking-wider">
+                    ¿Cómo llegar a nuestra sede?
+                </label>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="https://maps.google.com/?q=Profinca+Jireth" target="_blank" rel="noopener noreferrer" 
+                       class="flex items-center justify-center gap-2 p-3 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl font-bold text-xs hover:bg-blue-100 transition-colors">
+                        <span class="material-symbols-outlined text-lg">map</span>
+                        <span>Google Maps</span>
+                    </a>
+                    <a href="https://waze.com/ul?q=Profinca+Jireth" target="_blank" rel="noopener noreferrer" 
+                       class="flex items-center justify-center gap-2 p-3 bg-cyan-50 border border-cyan-200 text-cyan-700 rounded-xl font-bold text-xs hover:bg-cyan-100 transition-colors">
+                        <span class="material-symbols-outlined text-lg">navigation</span>
+                        <span>Waze</span>
+                    </a>
+                </div>
+            </div>
+
+            <button onclick="toggleInfoModal()" class="w-full py-2.5 bg-neutral-100 text-neutral-700 font-bold rounded-xl text-xs hover:bg-neutral-200 transition-colors">
+                Cerrar
+            </button>
+        </div>
+    </div>
+
+    <!-- NEW FULLSCREEN SPOTIFY WRAPPED-STYLE INTERACTIVE STORY MODAL -->
+    <div id="wrappedModal" class="fixed inset-0 z-50 bg-neutral-950 text-white flex flex-col transition-all duration-300 opacity-0 pointer-events-none transform scale-95 overflow-hidden">
+        
+        <!-- Dynamic Ambient Background Gradient -->
+        <div id="wrappedGradientBg" class="absolute inset-0 bg-gradient-to-b from-amber-900/40 via-neutral-900 to-black transition-all duration-700 pointer-events-none"></div>
+
+        <!-- Top Navigation Header -->
+        <div class="relative z-30 w-full max-w-3xl mx-auto pt-4 px-4 flex flex-col gap-3">
+            
+            <!-- Segmented Progress Bar (9 Steps) -->
+            <div id="wrappedProgressRow" class="flex gap-1.5 w-full">
+            </div>
+
+            <!-- Modal Header Controls -->
+            <div class="flex justify-between items-center py-1">
+                <div class="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-neutral-800">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ffed00] animate-pulse"></span>
+                    <span class="text-xs font-extrabold tracking-wider text-[#ffed00] uppercase font-headline-md">Profinca Story Wrapped</span>
+                </div>
+
+                <button onclick="closeWrappedModal()" class="p-2 rounded-full bg-neutral-900/80 hover:bg-neutral-800 text-neutral-300 hover:text-white transition-colors border border-neutral-700 shadow-md" title="Cerrar (Esc)">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Slide Card Container Area -->
+        <div class="relative z-10 flex-grow flex items-center justify-center p-4 sm:p-6">
+            
+            <!-- Left Touch Area (Prev Slide) -->
+            <div onclick="prevWrappedSlide()" class="absolute left-0 top-16 bottom-16 w-1/4 z-20 cursor-pointer group flex items-center justify-start pl-4" title="Anterior">
+                <div class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm group-hover:bg-black/70 flex items-center justify-center text-white/50 group-hover:text-white transition-all opacity-0 group-hover:opacity-100">
+                    <span class="material-symbols-outlined text-2xl">chevron_left</span>
+                </div>
+            </div>
+
+            <!-- Right Touch Area (Next Slide) -->
+            <div onclick="nextWrappedSlide()" class="absolute right-0 top-16 bottom-16 w-1/4 z-20 cursor-pointer group flex items-center justify-end pr-4" title="Siguiente">
+                <div class="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm group-hover:bg-black/70 flex items-center justify-center text-white/50 group-hover:text-white transition-all opacity-0 group-hover:opacity-100">
+                    <span class="material-symbols-outlined text-2xl">chevron_right</span>
+                </div>
+            </div>
+
+            <!-- Dynamic Story Card Content -->
+            <div id="wrappedSlideCard" class="w-full max-w-xl bg-neutral-900/90 border border-neutral-800/90 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl flex flex-col justify-between items-center text-center min-h-[460px] max-h-[82vh] overflow-y-auto transition-all duration-300 transform translate-y-0">
+            </div>
+        </div>
+
+        <!-- Bottom Footer Controls -->
+        <div class="relative z-30 w-full max-w-xl mx-auto pb-6 px-4 flex justify-between items-center text-xs">
+            <button onclick="prevWrappedSlide()" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-300 font-bold transition-all">
+                <span class="material-symbols-outlined text-base">arrow_back</span>
+                <span>Anterior</span>
+            </button>
+
+            <div class="flex items-center gap-2">
+                <button onclick="toggleWrappedAutoplay()" id="wrappedPlayPauseBtn" class="p-2 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-[#ffed00] transition-all" title="Pausar / Reproducir">
+                    <span class="material-symbols-outlined text-xl">pause</span>
+                </button>
+                <span id="wrappedCounterText" class="text-neutral-400 font-bold tracking-wider">1 / 9</span>
+            </div>
+
+            <button onclick="nextWrappedSlide()" class="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#ffed00] hover:bg-yellow-400 text-black font-extrabold transition-all shadow-md">
+                <span>Siguiente</span>
+                <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full z-40 flex justify-around items-center px-2 pb-safe py-1 bg-white border-t border-neutral-200 shadow-lg md:hidden">
+        <button onclick="filterCategory('Línea Pollo'); switchMobileTab(this)" class="mobile-tab flex flex-col items-center justify-center text-neutral-500 py-1 px-2 rounded-xl transition-all">
+            <span class="material-symbols-outlined text-xl">egg</span>
+            <span class="text-[10px] font-bold mt-0.5">Pollo</span>
+        </button>
+        <button onclick="filterCategory('Línea Cerdo'); switchMobileTab(this)" class="mobile-tab flex flex-col items-center justify-center text-neutral-500 py-1 px-2 rounded-xl transition-all">
+            <span class="material-symbols-outlined text-xl">restaurant</span>
+            <span class="text-[10px] font-bold mt-0.5">Cerdo</span>
+        </button>
+        <button onclick="filterCategory('Línea Res'); switchMobileTab(this)" class="mobile-tab flex flex-col items-center justify-center text-neutral-500 py-1 px-2 rounded-xl transition-all">
+            <span class="material-symbols-outlined text-xl">skillet</span>
+            <span class="text-[10px] font-bold mt-0.5">Res</span>
+        </button>
+        <button onclick="filterCategory('Línea Comidas Rápidas'); switchMobileTab(this)" class="mobile-tab flex flex-col items-center justify-center text-neutral-500 py-1 px-2 rounded-xl transition-all">
+            <span class="material-symbols-outlined text-xl">fastfood</span>
+            <span class="text-[10px] font-bold mt-0.5">Víveres</span>
+        </button>
+        <button onclick="toggleCartDrawer()" class="mobile-tab flex flex-col items-center justify-center text-[#e31837] py-1 px-2 rounded-xl transition-all relative">
+            <span class="material-symbols-outlined text-xl">shopping_cart</span>
+            <span class="text-[10px] font-bold mt-0.5">Carrito</span>
+        </button>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="w-full py-6 px-4 md:px-8 bg-neutral-900 text-neutral-400 mt-auto hidden md:block">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white text-base">Profinca Jireth</span>
+                <span>© 2024 Butchery & Grocery Store</span>
+            </div>
+            <div class="flex gap-6">
+                <button onclick="openWrappedModal()" class="hover:text-[#ffed00] font-bold underline transition-colors">Más sobre nosotros</button>
+                <button onclick="toggleInfoModal()" class="hover:text-white underline transition-colors">Horarios y Ubicación</button>
+                <a href="https://wa.me/573054542305" target="_blank" class="hover:text-white underline transition-colors">WhatsApp Directo</a>
+                <a href="https://maps.google.com/?q=Profinca+Jireth" target="_blank" class="hover:text-white underline transition-colors">Google Maps</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- EMBEDDED COMPLETE JAVASCRIPT ENGINE & DATABASE -->
+    <script>
+        const WHATSAPP_PHONE = "573054542305";
+
+        const PRODUCTS_DATA = [
+            // 1. LÍNEA CERDO (32 Productos)
+            {"categoria": "Línea Cerdo", "codigo": "P162", "nombre": "ANCA DE CERDO", "unidad": "KILO", "precio": 20000},
+            {"categoria": "Línea Cerdo", "codigo": "P135", "nombre": "BONDIOLA CON HUESO", "unidad": "KILO", "precio": 17500},
+            {"categoria": "Línea Cerdo", "codigo": "P40", "nombre": "BONDIOLA DE CERDO - EMPACADA AL VACÍO", "unidad": "KILO", "precio": 16500},
+            {"categoria": "Línea Cerdo", "codigo": "P124", "nombre": "BONDIOLA FRESCA", "unidad": "KILO", "precio": 16500},
+            {"categoria": "Línea Cerdo", "codigo": "P41", "nombre": "CHULETA DE CERDO COUNTRY", "unidad": "KILO", "precio": 16500},
+            {"categoria": "Línea Cerdo", "codigo": "P29", "nombre": "CHULETA DE CERDO DE PIERNA", "unidad": "KILO", "precio": 17500},
+            {"categoria": "Línea Cerdo", "codigo": "P21", "nombre": "CHULETÓN DE CERDO", "unidad": "KILO", "precio": 21000},
+            {"categoria": "Línea Cerdo", "codigo": "P174", "nombre": "CODILLOS DE CERDO", "unidad": "KILO", "precio": 10000},
+            {"categoria": "Línea Cerdo", "codigo": "P35", "nombre": "COJÍN DE LECHONA", "unidad": "KILO", "precio": 17000},
+            {"categoria": "Línea Cerdo", "codigo": "P123", "nombre": "COSTICHI DE CERDO (COSTILLA Y PANCETA)", "unidad": "KILO", "precio": 22000},
+            {"categoria": "Línea Cerdo", "codigo": "P57", "nombre": "COSTILLA DE CERDO SAN LUIS J", "unidad": "UNIDAD", "precio": 20000},
+            {"categoria": "Línea Cerdo", "codigo": "P131", "nombre": "COSTILLA A GRANEL", "unidad": "KILO", "precio": 17000},
+            {"categoria": "Línea Cerdo", "codigo": "P20", "nombre": "COSTILLITAS AHUMADAS EMPACADAS 500GR", "unidad": "KILO", "precio": 14000},
+            {"categoria": "Línea Cerdo", "codigo": "P18", "nombre": "COSTILLA DE CERDO BRISKET EMP", "unidad": "KILO", "precio": 17500},
+            {"categoria": "Línea Cerdo", "codigo": "P37", "nombre": "COSTILLA DE CERDO CON PIEL", "unidad": "KILO", "precio": 22000},
+            {"categoria": "Línea Cerdo", "codigo": "P19", "nombre": "COSTILLA DE CERDO MIXTA ROJA", "unidad": "KILO", "precio": 19500},
+            {"categoria": "Línea Cerdo", "codigo": "P16", "nombre": "COSTILLA DE CERDO SIN PIEL", "unidad": "KILO", "precio": 20000},
+            {"categoria": "Línea Cerdo", "codigo": "P34", "nombre": "EMPELLA DE CERDO", "unidad": "KILO", "precio": 9000},
+            {"categoria": "Línea Cerdo", "codigo": "P32", "nombre": "GARRA DE CERDO", "unidad": "KILO", "precio": 8000},
+            {"categoria": "Línea Cerdo", "codigo": "P112", "nombre": "LOMO AHUMADO", "unidad": "KILO", "precio": 21000},
+            {"categoria": "Línea Cerdo", "codigo": "P31", "nombre": "LOMO DE CERDO CRIOLLO", "unidad": "KILO", "precio": 19500},
+            {"categoria": "Línea Cerdo", "codigo": "P10", "nombre": "LOMO DE CERDO IMPORTADO", "unidad": "KILO", "precio": 17500},
+            {"categoria": "Línea Cerdo", "codigo": "P205", "nombre": "LOMO NACIONAL ROSADO", "unidad": "UNIDAD", "precio": 18500},
+            {"categoria": "Línea Cerdo", "codigo": "P163", "nombre": "MINILOMO", "unidad": "KILO", "precio": 17500},
+            {"categoria": "Línea Cerdo", "codigo": "P104", "nombre": "PANCETA CUADRADA PREMIUM", "unidad": "KILO", "precio": 24000},
+            {"categoria": "Línea Cerdo", "codigo": "P22", "nombre": "PANCETA MEDIA LUNA", "unidad": "KILO", "precio": 22000},
+            {"categoria": "Línea Cerdo", "codigo": "P33", "nombre": "PAPADA DE CERDO", "unidad": "KILO", "precio": 15500},
+            {"categoria": "Línea Cerdo", "codigo": "P36", "nombre": "PIERNA PULPA DE CERDO", "unidad": "KILO", "precio": 16500},
+            {"categoria": "Línea Cerdo", "codigo": "P23", "nombre": "PERNIL DE CERDO CON PIEL Y HUE", "unidad": "KILO", "precio": 14500},
+            {"categoria": "Línea Cerdo", "codigo": "P30", "nombre": "MANITOS DE CERDO", "unidad": "KILO", "precio": 9000},
+            {"categoria": "Línea Cerdo", "codigo": "P39", "nombre": "PEZUÑA DE CERDO", "unidad": "KILO", "precio": 9000},
+            {"categoria": "Línea Cerdo", "codigo": "P24", "nombre": "TOCINO DE CERDO", "unidad": "KILO", "precio": 9000},
+
+            // 2. LÍNEA POLLO (18 Productos)
+            {"categoria": "Línea Pollo", "codigo": "P27", "nombre": "ALAS DE POLLO PURINA", "unidad": "KILO", "precio": 10500},
+            {"categoria": "Línea Pollo", "codigo": "P130", "nombre": "ALAS SEMICRIOLLA", "unidad": "KILO", "precio": 11500},
+            {"categoria": "Línea Pollo", "codigo": "P242", "nombre": "BANDEJA DE CORAZONES", "unidad": "UNIDAD", "precio": 7500},
+            {"categoria": "Línea Pollo", "codigo": "P241", "nombre": "BANDEJA DE MOLLEJAS", "unidad": "UNIDAD", "precio": 7500},
+            {"categoria": "Línea Pollo", "codigo": "P26", "nombre": "FILETE DE PECHUGA", "unidad": "BANDEJA", "precio": 12000},
+            {"categoria": "Línea Pollo", "codigo": "P12", "nombre": "GALLINA GRANDE", "unidad": "UNIDAD", "precio": 45000},
+            {"categoria": "Línea Pollo", "codigo": "P25", "nombre": "GOULASH DE POLLO", "unidad": "KILO", "precio": 16500},
+            {"categoria": "Línea Pollo", "codigo": "P13", "nombre": "MEDIO POLLO SEMICRIOLLO", "unidad": "BANDEJA", "precio": 16000},
+            {"categoria": "Línea Pollo", "codigo": "P77", "nombre": "MENUDENCIA", "unidad": "KILO", "precio": 3000},
+            {"categoria": "Línea Pollo", "codigo": "P09", "nombre": "MUSLO DE POLLO", "unidad": "KILO", "precio": 7500},
+            {"categoria": "Línea Pollo", "codigo": "P15", "nombre": "PATAS PESCUESO", "unidad": "KILO", "precio": 4200},
+            {"categoria": "Línea Pollo", "codigo": "P02", "nombre": "PECHUGA PURINA", "unidad": "KILO", "precio": 11000},
+            {"categoria": "Línea Pollo", "codigo": "P03", "nombre": "PECHUGA SEMICRIOLLA", "unidad": "KILO", "precio": 14500},
+            {"categoria": "Línea Pollo", "codigo": "P06", "nombre": "PICADA PURINA", "unidad": "BANDEJA", "precio": 3800},
+            {"categoria": "Línea Pollo", "codigo": "P14", "nombre": "PICADA SEMICRIOLLA", "unidad": "BANDEJA", "precio": 4500},
+            {"categoria": "Línea Pollo", "codigo": "P04", "nombre": "PIERNA PERNIL PURINA", "unidad": "KILO", "precio": 7200},
+            {"categoria": "Línea Pollo", "codigo": "P01", "nombre": "PIERNA PERNIL SEMICRIOLLA", "unidad": "KILO", "precio": 8500},
+            {"categoria": "Línea Pollo", "codigo": "P11", "nombre": "POLLO SEMICRIOLLO ENTERO", "unidad": "KILO", "precio": 11500},
+
+            // 3. LÍNEA COMIDAS RÁPIDAS & VÍVERES (46 Productos)
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P245", "nombre": "ACEITE 900ML", "unidad": "TARRO", "precio": 9500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P211", "nombre": "ACEITE DE DON THOMAS X 5000ML", "unidad": "TARRO", "precio": 29000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P90", "nombre": "ACEITE EN PIMPINA SALOMON X 18", "unidad": "TARRO", "precio": 115000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P170", "nombre": "ACEITE PIMPINA AURORA", "unidad": "TARRO", "precio": 117000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P210", "nombre": "ACEITE PIMPINA DON THOMAS", "unidad": "TARRO", "precio": 110000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P238", "nombre": "ACEITE SALOMON 5000 X 4", "unidad": "TARRO", "precio": 29000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P145", "nombre": "ACEITE X 3.000 CM", "unidad": "TARRO", "precio": 21000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P150", "nombre": "ACEITE X 5.000CM", "unidad": "TARRO", "precio": 29000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P69", "nombre": "CHORIZO CACIQUE X10 UND", "unidad": "PAQUETE", "precio": 17000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P43", "nombre": "CHORIZO PREMIUM X 12 UND", "unidad": "PAQUETE", "precio": 14000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P142", "nombre": "JALAPEÑA TAJADO XBOLSA", "unidad": "UNIDAD", "precio": 15000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P93", "nombre": "JAMON BLOQUE X 5LB", "unidad": "PAQUETE", "precio": 46000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P129", "nombre": "JALAPEÑA EN GALON PLASTICO", "unidad": "UNIDAD", "precio": 39000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P155", "nombre": "MAIZ DESGRANADO LIBRA", "unidad": "BOLSA", "precio": 7500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P51-M", "nombre": "MAIZ DESGRANADO X 1KILO", "unidad": "BOLSA", "precio": 10500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P84", "nombre": "MAYONESA XGALON FRUGAL", "unidad": "TARRO", "precio": 65000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P159", "nombre": "MAYONESA CREMI X GALON", "unidad": "TARRO", "precio": 60000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P173", "nombre": "MAYONESA THIMS X GALON", "unidad": "TARRO", "precio": 58000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P157", "nombre": "MAYONESA XGALON ADEREZOS", "unidad": "TARRO", "precio": 70000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P158", "nombre": "MAYONESA XGALON DON GOLDEN", "unidad": "TARRO", "precio": 62000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P160", "nombre": "MAYONESA XGALON DON THOMAS", "unidad": "TARRO", "precio": 58000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P100", "nombre": "MIX DE VERDURA X LIBRA", "unidad": "BOLSA", "precio": 8000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P208", "nombre": "MIX DE VERDURA X KILO", "unidad": "BOLSA", "precio": 10500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P101", "nombre": "PAPA FARM FRITE 2.500 G", "unidad": "BOLSA", "precio": 17500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P07", "nombre": "PAPA FROZEN ROJA TRADICIONAL", "unidad": "BOLSA", "precio": 22000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P58", "nombre": "PAPA FROZEN TRADICIONAL VERDE", "unidad": "BOLSA", "precio": 24000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P72", "nombre": "PAPA MYDIBEL", "unidad": "BOLSA", "precio": 17500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P132", "nombre": "PASTA EMPANADA", "unidad": "PAQUETE", "precio": 4500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P133", "nombre": "PASTA FLAUTA", "unidad": "PAQUETE", "precio": 4500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P144", "nombre": "PEPINILLO AGRIDULCE TAJADO X B", "unidad": "BOLSA", "precio": 15000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P143", "nombre": "PEPINILLO AGRIDULCE TAJADO X G", "unidad": "TARRO", "precio": 39000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P201", "nombre": "QUESO CHEDDAR", "unidad": "UNIDAD", "precio": 75000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P82", "nombre": "QUESO TAJADO EN BLOQUE", "unidad": "BLOQUE", "precio": 54000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P53-Q", "nombre": "QUESO X KILO SEMI SALADO", "unidad": "KILO", "precio": 19000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P94", "nombre": "RIPIO DE PAPA", "unidad": "UNIDAD", "precio": 10500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P95", "nombre": "ROLLO DE CARNE ANGUS", "unidad": "KILO", "precio": 28000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P92", "nombre": "SALCHICHA AMERICAN TIPO PERRO X 18 U", "unidad": "PAQUETE", "precio": 28500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P236", "nombre": "MANGUERA CACIQUE X21 UND 2,950 GR", "unidad": "PAQUETE", "precio": 29500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P44", "nombre": "MANGUERA HAMBURGUER X 18 UND 2,500 GR", "unidad": "PAQUETE", "precio": 29500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P114", "nombre": "SALCHICHON CERVECERO HAMBURGUE", "unidad": "PAQUETE", "precio": 8000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P172", "nombre": "SALCHICHON CERVECERO KIMBI 100", "unidad": "BOLSA", "precio": 8000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P152", "nombre": "SALCHICHON DE POLLO", "unidad": "UNIDAD", "precio": 7500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P218", "nombre": "TOCINETA GOURMET X 1000G 67 UND", "unidad": "PAQUETE", "precio": 19000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P42", "nombre": "TOCINETA PAQ X KILO PEKONI 100 UND", "unidad": "PAQUETE", "precio": 19000},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P115", "nombre": "TOCINETA X 500GR PEKONI", "unidad": "PAQUETE", "precio": 10500},
+            {"categoria": "Línea Comidas Rápidas", "codigo": "P207", "nombre": "TOCINETA X 500GR GOURMET", "unidad": "PAQUETE", "precio": 10500},
+
+            // 4. LÍNEA RES (4 Productos)
+            {"categoria": "Línea Res", "codigo": "P49", "nombre": "GOULASH DE CARNE X KILO", "unidad": "KILO", "precio": 28000},
+            {"categoria": "Línea Res", "codigo": "P167", "nombre": "HIGADO DE RES", "unidad": "KILO", "precio": 17000},
+            {"categoria": "Línea Res", "codigo": "P74", "nombre": "LENGUA DE RES", "unidad": "KILO", "precio": 24000},
+            {"categoria": "Línea Res", "codigo": "P168", "nombre": "MONDOGO DE RES", "unidad": "KILO", "precio": 17000}
+        ];
+
+        // -------------------------------------------------------------
+        // STRUCTURED SPOTIFY WRAPPED CONFIGURATION DATA (PREPARED FOR REAL CONTENT)
+        // -------------------------------------------------------------
+        const WRAPPED_SLIDES_DATA = [
+            {
+                id: "comienzo",
+                step: "01 / 09",
+                badge: "CÓMO COMENZÓ",
+                icon: "rocket_launch",
+                titulo: "Cómo comenzó Profinca Jireth",
+                subtitulo: "Espacio reservado para relatar nuestros inicios y la fundación.",
+                texto: "Aquí irá el texto descriptivo sobre la fundación de Profinca Jireth, los primeros pasos, la pasión por la mejor carne y el origen de nuestro servicio.",
+                datoClave: "Fundados con el compromiso de llevar frescura directa del campo a tu hogar",
+                mediaPlaceholder: "📷 [Espacio para Foto Histórica de la Fundación o Primera Sede]",
+                gradient: "from-amber-950 via-neutral-900 to-black"
+            },
+            {
+                id: "historia",
+                step: "02 / 09",
+                badge: "NUESTRA HISTORIA",
+                icon: "history_edu",
+                titulo: "La Historia de nuestra Empresa",
+                subtitulo: "Espacio reservado para el recorrido y crecimiento de la marca.",
+                texto: "Aquí irá la reseña histórica sobre cómo hemos crecido año tras año gracias a la confianza de nuestros clientes y familias que nos eligen.",
+                datoClave: "Años de trayectoria garantizando cortes de carne de primera selección",
+                mediaPlaceholder: "📜 [Espacio para Galería de Fotos o Línea de Tiempo de Evolución]",
+                gradient: "from-red-950 via-neutral-900 to-black"
+            },
+            {
+                id: "de-donde-somos",
+                step: "03 / 09",
+                badge: "ORIGEN LOCAL",
+                icon: "location_on",
+                titulo: "De dónde somos",
+                subtitulo: "Espacio reservado para nuestras raíces e identidad local.",
+                texto: "Aquí irá la información sobre nuestra ubicación de origen, nuestro arraigo regional y la cercanía con la comunidad a la que servimos diariamente.",
+                datoClave: "Orgullosamente locales, sirviendo con calidez y cercanía",
+                mediaPlaceholder: "📍 [Espacio para Fotografía de Nuestra Sede y Región]",
+                gradient: "from-emerald-950 via-neutral-900 to-black"
+            },
+            {
+                id: "origen-productos",
+                step: "04 / 09",
+                badge: "CALIDAD Y ORIGEN",
+                icon: "agriculture",
+                titulo: "De dónde provienen nuestros productos",
+                subtitulo: "Espacio reservado para la selección y procedencia del ganado y víveres.",
+                texto: "Aquí explicaremos el proceso de selección directa en granjas y proveedores certificados, asegurando el estándar más estricto de higiene y frescura.",
+                datoClave: "100% Calidad Garantizada desde el origen hasta tu mesa",
+                mediaPlaceholder: "🥩 [Espacio para Imagen de Ganado, Granjas o Cadena de Frío]",
+                gradient: "from-yellow-950 via-neutral-900 to-black"
+            },
+            {
+                id: "diferencial",
+                step: "05 / 09",
+                badge: "NUESTRO VALOR",
+                icon: "verified",
+                titulo: "Qué nos diferencia",
+                subtitulo: "Espacio reservado para nuestras ventajas competitivas.",
+                texto: "Aquí destacaremos la atención personalizada, los cortes a la medida, la rapidez en domicilios y la transparencia en cada peso entregado.",
+                datoClave: "Frescura garantizada, peso exacto y atención familiar de primera",
+                mediaPlaceholder: "⭐ [Espacio para Infografía o Íconos de Puntos Diferenciales]",
+                gradient: "from-orange-950 via-neutral-900 to-black"
+            },
+            {
+                id: "vision",
+                step: "06 / 09",
+                badge: "FUTURO Y METAS",
+                icon: "visibility",
+                titulo: "Nuestra Visión",
+                subtitulo: "Espacio reservado para la proyección estratégica a futuro.",
+                texto: "Aquí se incluirá nuestra visión de convertirnos en la carnicería y tienda de víveres preferida y referente de toda la región.",
+                datoClave: "Líderes en calidad carna, innovación en domicilios y servicio",
+                mediaPlaceholder: "🎯 [Espacio para Gráfica o Ilustración de Visión Corporativa]",
+                gradient: "from-teal-950 via-neutral-900 to-black"
+            },
+            {
+                id: "objetivos",
+                step: "07 / 09",
+                badge: "PROPÓSITO",
+                icon: "flag",
+                titulo: "Nuestros Objetivos",
+                subtitulo: "Espacio reservado para los objetivos y metas principales.",
+                texto: "Aquí irán los objetivos de expansión, mejora constante en la cadena de frío, capacitación del equipo y satisfacción total en cada compra.",
+                datoClave: "Acompañar la mesa de miles de familias con los mejores productos",
+                mediaPlaceholder: "📊 [Espacio para Lista Gráfica de Objetivos Estratégicos]",
+                gradient: "from-blue-950 via-neutral-900 to-black"
+            },
+            {
+                id: "filosofia",
+                step: "08 / 09",
+                badge: "VALORES",
+                icon: "favorite",
+                titulo: "Nuestra Filosofía",
+                subtitulo: "Espacio reservado para nuestros principios éticos y de servicio.",
+                texto: "Aquí se detallará el compromiso de Profinca Jireth con la honestidad, la higiene impecable, el trato humano y el respeto por el cliente.",
+                datoClave: "Trabajamos con amor, fe y dedicación inquebrantable",
+                mediaPlaceholder: "🤝 [Espacio para Imagen de Nuestro Equipo de Trabajo]",
+                gradient: "from-purple-950 via-neutral-900 to-black"
+            },
+            {
+                id: "futuro",
+                step: "09 / 09",
+                badge: "LO QUE VIENE",
+                icon: "auto_awesome",
+                titulo: "Lo que queremos lograr en el futuro",
+                subtitulo: "Espacio reservado para el mensaje final e innovación a futuro.",
+                texto: "Aquí irá el mensaje de cierre sobre nuestros proyectos de innovación, nuevas sedes y el agradecimiento infinito a todos nuestros clientes.",
+                datoClave: "¡Gracias por ser parte fundamental de la familia Profinca Jireth!",
+                mediaPlaceholder: "🚀 [Espacio para Mensaje Final de Agradecimiento e Imagen Futura]",
+                gradient: "from-rose-950 via-neutral-950 to-black"
+            }
+        ];
+
+        let currentCategory = 'todos';
+        let searchQuery = '';
+        let cartState = {};
+
+        // Spotify Wrapped State Variables
+        let wrappedCurrentSlide = 0;
+        let wrappedIsAutoplay = true;
+        let wrappedTimer = null;
+        let wrappedTouchStartX = 0;
+
+        function formatCOP(price) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                maximumFractionDigits: 0
+            }).format(price);
+        }
+
+        function getCategoryEmoji(cat) {
+            switch(cat) {
+                case 'Línea Cerdo': return '🐷';
+                case 'Línea Pollo': return '🐔';
+                case 'Línea Res': return '🥩';
+                case 'Línea Comidas Rápidas': return '🍔';
+                default: return '📦';
+            }
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const noResults = document.getElementById('noResults');
+            const titleEl = document.getElementById('currentCategoryTitle');
+            const countEl = document.getElementById('productCountBadge');
+
+            if (!grid) return;
+
+            let filtered = PRODUCTS_DATA.filter(item => {
+                const matchesCategory = (currentCategory === 'todos') || (item.categoria === currentCategory);
+                const matchesSearch = searchQuery === '' || 
+                                     item.nombre.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                     item.codigo.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (currentCategory === 'todos') {
+                titleEl.textContent = searchQuery ? `Resultados para "${searchQuery}"` : 'Todos los Productos';
+            } else {
+                titleEl.textContent = currentCategory;
+            }
+            countEl.textContent = `${filtered.length} productos`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                noResults.classList.add('flex');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+                noResults.classList.remove('flex');
+            }
+
+            grid.innerHTML = filtered.map(item => {
+                const cartQty = cartState[item.codigo] ? cartState[item.codigo].quantity : 1;
+                const isKilo = item.unidad === 'KILO';
+                const unitLabel = isKilo ? '/Kilo' : `/${item.unidad.toLowerCase()}`;
+                const emoji = getCategoryEmoji(item.categoria);
+
+                return `
+                    <article class="bg-white rounded-2xl border border-neutral-200/90 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between p-4 sm:p-5 group">
+                        
+                        <!-- Top Header Badges -->
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="bg-black text-[#ffed00] text-xs font-extrabold px-3 py-1 rounded-lg shadow-sm tracking-wide">
+                                ${item.codigo}
+                            </span>
+                            <span class="bg-amber-100/80 text-amber-900 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <span>${emoji}</span>
+                                <span>${item.categoria}</span>
+                            </span>
+                        </div>
+
+                        <!-- Product Title & Price -->
+                        <div class="mb-4">
+                            <h3 class="font-extrabold font-headline-md text-neutral-900 text-base sm:text-lg leading-snug">
+                                ${item.nombre}
+                            </h3>
+                            <div class="mt-2 flex items-baseline gap-1.5">
+                                <span class="text-2xl font-extrabold font-price-display text-[#e31837]">
+                                    ${formatCOP(item.precio)}
+                                </span>
+                                <span class="text-xs font-semibold text-neutral-500">
+                                    ${unitLabel}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Stepper & Order Action -->
+                        <div class="space-y-2.5 pt-3 border-t border-neutral-100 mt-auto">
+                            <div class="flex items-center justify-between bg-neutral-100 rounded-xl border border-neutral-200 overflow-hidden p-1">
+                                <button type="button" 
+                                        onclick="changeCardQty('${item.codigo}', -1)"
+                                        class="w-10 h-10 flex items-center justify-center text-[#e31837] font-bold text-xl hover:bg-white rounded-lg transition-colors">
+                                    -
+                                </button>
+                                <input type="number" 
+                                       id="qty-input-${item.codigo}" 
+                                       value="${cartQty}" 
+                                       min="1" 
+                                       max="99"
+                                       onchange="setCardQty('${item.codigo}', this.value)"
+                                       class="w-12 text-center border-none focus:ring-0 text-base font-extrabold bg-transparent p-0">
+                                <button type="button" 
+                                        onclick="changeCardQty('${item.codigo}', 1)"
+                                        class="w-10 h-10 flex items-center justify-center text-[#e31837] font-bold text-xl hover:bg-white rounded-lg transition-colors">
+                                    +
+                                </button>
+                            </div>
+
+                            <button onclick="addToCart('${item.codigo}')" 
+                                    class="w-full bg-[#e31837] hover:bg-red-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-all duration-150">
+                                <span class="material-symbols-outlined text-lg">add_shopping_cart</span>
+                                <span>Agregar al Pedido</span>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // -------------------------------------------------------------
+        // SPOTIFY WRAPPED INTERACTIVE STORY CONTROLLER FUNCTIONS
+        // -------------------------------------------------------------
+        function openWrappedModal() {
+            const modal = document.getElementById('wrappedModal');
+            wrappedCurrentSlide = 0;
+            wrappedIsAutoplay = true;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+            modal.classList.add('opacity-100', 'scale-100');
+
+            renderWrappedProgressBars();
+            renderWrappedSlide();
+            startWrappedTimer();
+
+            // Event Listeners for Keyboard & Touch Swipe
+            window.addEventListener('keydown', handleWrappedKeydown);
+            modal.addEventListener('touchstart', handleWrappedTouchStart, { passive: true });
+            modal.addEventListener('touchend', handleWrappedTouchEnd, { passive: true });
+        }
+
+        function closeWrappedModal() {
+            const modal = document.getElementById('wrappedModal');
+            modal.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+            modal.classList.remove('opacity-100', 'scale-100');
+
+            clearWrappedTimer();
+            window.removeEventListener('keydown', handleWrappedKeydown);
+        }
+
+        function renderWrappedProgressBars() {
+            const row = document.getElementById('wrappedProgressRow');
+            if (!row) return;
+
+            row.innerHTML = WRAPPED_SLIDES_DATA.map((slide, idx) => {
+                let barStyle = "bg-white/20";
+                if (idx < wrappedCurrentSlide) {
+                    barStyle = "bg-[#ffed00]";
+                } else if (idx === wrappedCurrentSlide) {
+                    barStyle = "bg-[#ffed00] animate-pulse";
+                }
+
+                return `
+                    <div class="h-1.5 flex-1 rounded-full overflow-hidden transition-all duration-300 ${barStyle}"></div>
+                `;
+            }).join('');
+        }
+
+        function renderWrappedSlide() {
+            const slide = WRAPPED_SLIDES_DATA[wrappedCurrentSlide];
+            const card = document.getElementById('wrappedSlideCard');
+            const bgGradient = document.getElementById('wrappedGradientBg');
+            const counterText = document.getElementById('wrappedCounterText');
+
+            if (!slide || !card) return;
+
+            bgGradient.className = `absolute inset-0 bg-gradient-to-b ${slide.gradient} transition-all duration-700 pointer-events-none`;
+            counterText.textContent = `${wrappedCurrentSlide + 1} / ${WRAPPED_SLIDES_DATA.length}`;
+
+            // Smooth Card Transition
+            card.classList.add('opacity-0', 'translate-y-4');
+
+            setTimeout(() => {
+                card.innerHTML = `
+                    <div class="w-full space-y-4 my-auto">
+                        
+                        <!-- Step Badge & Category Icon -->
+                        <div class="inline-flex items-center gap-2 bg-[#ffed00] text-black px-4 py-1.5 rounded-full font-extrabold text-xs tracking-wider uppercase shadow-md mb-1">
+                            <span class="material-symbols-outlined text-base">${slide.icon}</span>
+                            <span>${slide.step} • ${slide.badge}</span>
+                        </div>
+
+                        <!-- Main Title -->
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold font-headline-lg text-white leading-tight drop-shadow-sm">
+                            ${slide.titulo}
+                        </h2>
+
+                        <!-- Subtitle -->
+                        <p class="text-xs sm:text-sm font-semibold text-[#ffed00] tracking-wide">
+                            ${slide.subtitulo}
+                        </p>
+
+                        <!-- Media / Image Placeholder Container -->
+                        <div class="w-full h-44 sm:h-56 rounded-2xl bg-black/60 border border-neutral-700/80 flex flex-col justify-center items-center p-4 gap-2 text-neutral-400 group hover:border-[#ffed00]/50 transition-colors shadow-inner my-2">
+                            <span class="material-symbols-outlined text-4xl text-neutral-500 group-hover:text-[#ffed00] transition-colors">image</span>
+                            <span class="text-xs font-semibold max-w-xs text-neutral-300 leading-relaxed">
+                                ${slide.mediaPlaceholder}
+                            </span>
+                            <span class="text-[10px] text-neutral-500 uppercase tracking-widest font-mono">
+                                [Área reservada para multimedia real]
+                            </span>
+                        </div>
+
+                        <!-- Description Text -->
+                        <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed font-body-md max-w-md mx-auto">
+                            ${slide.texto}
+                        </p>
+
+                        <!-- Key Highlight Stat Box -->
+                        <div class="w-full bg-neutral-800/80 border border-neutral-700 p-3.5 rounded-2xl flex items-center justify-center gap-2 text-xs font-bold text-yellow-300">
+                            <span class="material-symbols-outlined text-lg text-[#ffed00]">verified</span>
+                            <span>${slide.datoClave}</span>
+                        </div>
+                    </div>
+                `;
+
+                card.classList.remove('opacity-0', 'translate-y-4');
+                renderWrappedProgressBars();
+            }, 150);
+        }
+
+        function nextWrappedSlide() {
+            if (wrappedCurrentSlide < WRAPPED_SLIDES_DATA.length - 1) {
+                wrappedCurrentSlide++;
+            } else {
+                wrappedCurrentSlide = 0; // Loop back or close
+            }
+            renderWrappedSlide();
+            resetWrappedTimer();
+        }
+
+        function prevWrappedSlide() {
+            if (wrappedCurrentSlide > 0) {
+                wrappedCurrentSlide--;
+            } else {
+                wrappedCurrentSlide = WRAPPED_SLIDES_DATA.length - 1;
+            }
+            renderWrappedSlide();
+            resetWrappedTimer();
+        }
+
+        function toggleWrappedAutoplay() {
+            wrappedIsAutoplay = !wrappedIsAutoplay;
+            const btn = document.getElementById('wrappedPlayPauseBtn');
+            if (wrappedIsAutoplay) {
+                btn.innerHTML = `<span class="material-symbols-outlined text-xl">pause</span>`;
+                startWrappedTimer();
+                showToast('▶ Reproducción automática activada');
+            } else {
+                btn.innerHTML = `<span class="material-symbols-outlined text-xl">play_arrow</span>`;
+                clearWrappedTimer();
+                showToast('⏸️ Reproducción pausada');
+            }
+        }
+
+        function startWrappedTimer() {
+            clearWrappedTimer();
+            if (wrappedIsAutoplay) {
+                wrappedTimer = setTimeout(() => {
+                    nextWrappedSlide();
+                }, 5000);
+            }
+        }
+
+        function clearWrappedTimer() {
+            if (wrappedTimer) {
+                clearTimeout(wrappedTimer);
+                wrappedTimer = null;
+            }
+        }
+
+        function resetWrappedTimer() {
+            if (wrappedIsAutoplay) {
+                startWrappedTimer();
+            }
+        }
+
+        function handleWrappedKeydown(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextWrappedSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevWrappedSlide();
+            } else if (e.key === 'Escape') {
+                closeWrappedModal();
+            }
+        }
+
+        function handleWrappedTouchStart(e) {
+            wrappedTouchStartX = e.touches[0].clientX;
+        }
+
+        function handleWrappedTouchEnd(e) {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diffX = touchEndX - wrappedTouchStartX;
+            if (diffX < -50) {
+                nextWrappedSlide();
+            } else if (diffX > 50) {
+                prevWrappedSlide();
+            }
+        }
+
+        function changeCardQty(codigo, delta) {
+            const input = document.getElementById(`qty-input-${codigo}`);
+            if (!input) return;
+            let val = parseInt(input.value) || 1;
+            val = Math.max(1, Math.min(99, val + delta));
+            input.value = val;
+        }
+
+        function setCardQty(codigo, value) {
+            const input = document.getElementById(`qty-input-${codigo}`);
+            if (!input) return;
+            let val = parseInt(value) || 1;
+            input.value = Math.max(1, Math.min(99, val));
+        }
+
+        function addToCart(codigo) {
+            const product = PRODUCTS_DATA.find(p => p.codigo === codigo);
+            if (!product) return;
+
+            const qtyInput = document.getElementById(`qty-input-${codigo}`);
+            const qty = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+
+            if (cartState[codigo]) {
+                cartState[codigo].quantity += qty;
+            } else {
+                cartState[codigo] = {
+                    product: product,
+                    quantity: qty
+                };
+            }
+
+            updateCartUI();
+            showToast(`¡${product.nombre} agregado!`);
+        }
+
+        function updateCartQuantity(codigo, newQty) {
+            if (newQty <= 0) {
+                delete cartState[codigo];
+            } else {
+                if (cartState[codigo]) {
+                    cartState[codigo].quantity = newQty;
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(codigo) {
+            delete cartState[codigo];
+            updateCartUI();
+            showToast('Producto eliminado del carrito');
+        }
+
+        function updateCartUI() {
+            const cartKeys = Object.keys(cartState);
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            cartKeys.forEach(key => {
+                const item = cartState[key];
+                totalItems += item.quantity;
+                totalPrice += item.quantity * item.product.precio;
+            });
+
+            document.getElementById('floatingItemCount').textContent = `${totalItems} ${totalItems === 1 ? 'ítem' : 'ítems'}`;
+            document.getElementById('floatingTotalPrice').textContent = formatCOP(totalPrice);
+            document.getElementById('floatingCartBadge').textContent = totalItems;
+
+            const headerBadge = document.getElementById('headerCartBadge');
+            headerBadge.textContent = totalItems;
+            if (totalItems > 0) {
+                headerBadge.classList.remove('hidden');
+            } else {
+                headerBadge.classList.add('hidden');
+            }
+
+            const drawerList = document.getElementById('cartItemsList');
+            if (cartKeys.length === 0) {
+                drawerList.innerHTML = `
+                    <div class="h-64 flex flex-col items-center justify-center text-center p-6 text-neutral-400">
+                        <span class="material-symbols-outlined text-6xl mb-2 text-neutral-300">shopping_cart</span>
+                        <p class="font-bold text-neutral-600">Tu carrito está vacío</p>
+                        <p class="text-xs text-neutral-400 mt-1">Explora nuestro catálogo y agrega carnes de alta calidad.</p>
+                    </div>
+                `;
+            } else {
+                drawerList.innerHTML = cartKeys.map(key => {
+                    const item = cartState[key];
+                    const itemSubtotal = item.quantity * item.product.precio;
+                    const unitText = item.product.unidad === 'KILO' ? 'Kilos' : 'Unidades';
+                    const emoji = getCategoryEmoji(item.product.categoria);
+
+                    return `
+                        <div class="flex items-center gap-3 py-3">
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-xl flex-shrink-0 border border-amber-200">
+                                ${emoji}
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <h4 class="text-xs font-bold text-neutral-900 truncate">${item.product.nombre}</h4>
+                                <span class="text-[10px] text-neutral-500 font-semibold block">${item.product.codigo} • ${formatCOP(item.product.precio)} / ${item.product.unidad}</span>
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <div class="flex items-center border border-neutral-300 rounded-lg bg-neutral-50 overflow-hidden">
+                                        <button onclick="updateCartQuantity('${key}', ${item.quantity - 1})" class="px-2 py-0.5 text-xs font-bold text-[#e31837] hover:bg-neutral-200">-</button>
+                                        <span class="px-2 text-xs font-bold text-neutral-800">${item.quantity} ${unitText}</span>
+                                        <button onclick="updateCartQuantity('${key}', ${item.quantity + 1})" class="px-2 py-0.5 text-xs font-bold text-[#e31837] hover:bg-neutral-200">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <span class="text-sm font-extrabold text-[#e31837] block">${formatCOP(itemSubtotal)}</span>
+                                <button onclick="removeFromCart('${key}')" class="text-neutral-400 hover:text-red-600 mt-1 p-1" title="Eliminar">
+                                    <span class="material-symbols-outlined text-lg">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('drawerSubtotal').textContent = formatCOP(totalPrice);
+            document.getElementById('drawerTotal').textContent = formatCOP(totalPrice);
+            document.getElementById('checkoutSummaryText').textContent = `${totalItems} ${totalItems === 1 ? 'producto' : 'productos'} en la lista`;
+            document.getElementById('checkoutTotalAmount').textContent = formatCOP(totalPrice);
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            
+            document.querySelectorAll('#categoryNav button').forEach(btn => {
+                if (btn.getAttribute('data-category') === cat) {
+                    btn.className = 'tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-[#ffed00] text-black shadow-sm';
+                } else {
+                    btn.className = 'tab-btn px-4 py-2 rounded-full font-bold text-xs sm:text-sm whitespace-nowrap transition-all bg-neutral-100 text-neutral-700 hover:bg-neutral-200';
+                }
+            });
+
+            renderProducts();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value.trim();
+            renderProducts();
+        }
+
+        function resetFilters() {
+            currentCategory = 'todos';
+            searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            filterCategory('todos');
+        }
+
+        function toggleDeliveryMode(mode) {
+            const addressContainer = document.getElementById('addressContainer');
+            const deliveryAddress = document.getElementById('deliveryAddress');
+            const pickupNotice = document.getElementById('pickupNotice');
+            const labelDelivery = document.getElementById('labelDelivery');
+            const labelPickup = document.getElementById('labelPickup');
+
+            if (mode === 'Domicilio') {
+                addressContainer.classList.remove('hidden');
+                deliveryAddress.setAttribute('required', 'true');
+                pickupNotice.classList.add('hidden');
+
+                labelDelivery.className = "relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all border-[#e31837] bg-red-50/50";
+                labelPickup.className = "relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all border-neutral-200 bg-neutral-50 hover:bg-neutral-100";
+            } else {
+                addressContainer.classList.add('hidden');
+                deliveryAddress.removeAttribute('required');
+                pickupNotice.classList.remove('hidden');
+
+                labelPickup.className = "relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all border-[#e31837] bg-red-50/50";
+                labelDelivery.className = "relative flex flex-col items-center justify-center p-4 rounded-xl border-2 cursor-pointer transition-all border-neutral-200 bg-neutral-50 hover:bg-neutral-100";
+            }
+        }
+
+        function handleWhatsAppSubmit(event) {
+            event.preventDefault();
+
+            const cartKeys = Object.keys(cartState);
+            if (cartKeys.length === 0) {
+                showToast('⚠️ Agrega al menos un producto al carrito antes de finalizar');
+                return;
+            }
+
+            const customerName = document.getElementById('customerName').value.trim();
+            const deliveryMethod = document.querySelector('input[name="deliveryMethod"]:checked').value;
+            const deliveryAddress = document.getElementById('deliveryAddress').value.trim();
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            if (deliveryMethod === 'Domicilio' && !deliveryAddress) {
+                showToast('⚠️ Ingresa una dirección de envío para el domicilio');
+                return;
+            }
+
+            let itemsText = '';
+            let grandTotal = 0;
+
+            cartKeys.forEach(key => {
+                const item = cartState[key];
+                const lineTotal = item.quantity * item.product.precio;
+                grandTotal += lineTotal;
+                const unitWord = item.product.unidad === 'KILO' ? (item.quantity === 1 ? 'Kilo' : 'Kilos') : (item.quantity === 1 ? 'Unidad' : 'Unidades');
+                
+                itemsText += `- ${item.quantity} ${unitWord} de ${item.product.nombre} (${formatCOP(lineTotal)})\n`;
+            });
+
+            let deliveryText = '';
+            if (deliveryMethod === 'Domicilio') {
+                deliveryText = `Modalidad de Entrega: Domicilio (Dirección: ${deliveryAddress})`;
+            } else {
+                deliveryText = `Modalidad de Entrega: Recoger en tienda`;
+            }
+
+            const fullMessage = 
+`Hola, quiero realizar el siguiente pedido:
+${itemsText}
+Total estimado: ${formatCOP(grandTotal)}
+Cliente: ${customerName}
+${deliveryText}
+Método de pago: ${paymentMethod}`;
+
+            const encodedUrl = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(fullMessage)}`;
+            window.open(encodedUrl, '_blank');
+
+            showToast('🚀 Generando pedido por WhatsApp...');
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function scrollToCheckout() {
+            toggleCartDrawer();
+            document.getElementById('checkoutSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleInfoModal() {
+            const modal = document.getElementById('infoModal');
+            const container = document.getElementById('infoModalContainer');
+
+            if (modal.classList.contains('pointer-events-none')) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                container.classList.remove('scale-100');
+                container.classList.add('scale-95');
+            }
+        }
+
+        function switchMobileTab(element) {
+            document.querySelectorAll('.mobile-tab').forEach(el => {
+                el.classList.remove('text-[#e31837]');
+                el.classList.add('text-neutral-500');
+            });
+            element.classList.remove('text-neutral-500');
+            element.classList.add('text-[#e31837]');
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'bg-black/90 text-white text-xs sm:text-sm font-bold px-4 py-3 rounded-xl shadow-lg border border-neutral-700 animate-toast flex items-center gap-2';
+            toast.innerHTML = `
+                <span class="material-symbols-outlined text-base text-[#ffed00]">check_circle</span>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+
+        // Attach functions to global window scope explicitly
+        window.filterCategory = filterCategory;
+        window.handleSearch = handleSearch;
+        window.resetFilters = resetFilters;
+        window.changeCardQty = changeCardQty;
+        window.setCardQty = setCardQty;
+        window.addToCart = addToCart;
+        window.updateCartQuantity = updateCartQuantity;
+        window.removeFromCart = removeFromCart;
+        window.toggleDeliveryMode = toggleDeliveryMode;
+        window.handleWhatsAppSubmit = handleWhatsAppSubmit;
+        window.toggleCartDrawer = toggleCartDrawer;
+        window.scrollToCheckout = scrollToCheckout;
+        window.toggleInfoModal = toggleInfoModal;
+        window.switchMobileTab = switchMobileTab;
+        window.openWrappedModal = openWrappedModal;
+        window.closeWrappedModal = closeWrappedModal;
+        window.nextWrappedSlide = nextWrappedSlide;
+        window.prevWrappedSlide = prevWrappedSlide;
+        window.toggleWrappedAutoplay = toggleWrappedAutoplay;
+
+        // Auto render on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                renderProducts();
+                updateCartUI();
+            });
+        } else {
+            renderProducts();
+            updateCartUI();
+        }
+    </script>
+</body>
+</html>
+
