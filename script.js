@@ -305,6 +305,8 @@ function renderProducts() {
                     </span>
                 </div>
 
+                ${renderProductImageHtml(item.codigo, item.nombre, emoji)}
+
                 <!-- Product Title & Price -->
                 <div class="mb-4">
                     <h3 class="font-extrabold font-headline-md text-neutral-900 text-base sm:text-lg leading-snug">
@@ -635,11 +637,9 @@ function updateCartUI() {
             const unitText = item.product.unidad === 'KILO' ? 'Kilos' : 'Unidades';
             const emoji = getCategoryEmoji(item.product.categoria);
 
-            return `
-                <div class="flex items-center gap-3 py-3">
-                    <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-xl flex-shrink-0 border border-amber-200">
-                        ${emoji}
-                    </div>
+                    return `
+                        <div class="flex items-center gap-3 py-3">
+                            ${renderProductThumbnailHtml(item.product.codigo, emoji)}
                     <div class="flex-grow min-w-0">
                         <h4 class="text-xs font-bold text-neutral-900 truncate">${item.product.nombre}</h4>
                         <span class="text-[10px] text-neutral-500 font-semibold block">${item.product.codigo} • ${formatCOP(item.product.precio)} / ${item.product.unidad}</span>

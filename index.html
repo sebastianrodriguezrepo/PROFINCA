@@ -592,6 +592,8 @@
     <!-- Toast Notifications -->
     <div id="toastContainer" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
+    <script src="product-images.js"></script>
+
     <!-- EMBEDDED COMPLETE JAVASCRIPT ENGINE & DATABASE -->
     <script>
         const WHATSAPP_PHONE = "573054542305";
@@ -900,6 +902,8 @@
                                 <span>${item.categoria}</span>
                             </span>
                         </div>
+
+                        ${renderProductImageHtml(item.codigo, item.nombre, emoji)}
 
                         <!-- Product Title & Price -->
                         <div class="mb-4">
@@ -1233,9 +1237,7 @@
 
                     return `
                         <div class="flex items-center gap-3 py-3">
-                            <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-xl flex-shrink-0 border border-amber-200">
-                                ${emoji}
-                            </div>
+                            ${renderProductThumbnailHtml(item.product.codigo, emoji)}
                             <div class="flex-grow min-w-0">
                                 <h4 class="text-xs font-bold text-neutral-900 truncate">${item.product.nombre}</h4>
                                 <span class="text-[10px] text-neutral-500 font-semibold block">${item.product.codigo} • ${formatCOP(item.product.precio)} / ${item.product.unidad}</span>
