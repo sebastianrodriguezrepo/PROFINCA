@@ -23,3 +23,7 @@ La pagina web permite:
 
 Este proyecto lo hice para familializarme con la creacion de paginas webs, poco a poco ir avazando, tambien lo hice para poder ayudar a esta microempresa,
 ya que esta pagina web puede brindarle nuevas ventas.
+
+Desde este link se puede ver lo creado 
+
+https://profincabca.netlify.app/
