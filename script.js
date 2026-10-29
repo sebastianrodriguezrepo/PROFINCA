@@ -91,7 +91,6 @@ const PRODUCTS_DATA = [
     {"categoria": "Línea Comidas Rápidas", "codigo": "P82", "nombre": "QUESO TAJADO EN BLOQUE", "unidad": "BLOQUE", "precio": 54000},
     {"categoria": "Línea Comidas Rápidas", "codigo": "P53-Q", "nombre": "QUESO X KILO SEMI SALADO", "unidad": "KILO", "precio": 19000},
     {"categoria": "Línea Comidas Rápidas", "codigo": "P94", "nombre": "RIPIO DE PAPA", "unidad": "UNIDAD", "precio": 10500},
-    {"categoria": "Línea Comidas Rápidas", "codigo": "P95", "nombre": "ROLLO DE CARNE ANGUS", "unidad": "KILO", "precio": 28000},
     {"categoria": "Línea Comidas Rápidas", "codigo": "P92", "nombre": "SALCHICHA AMERICAN TIPO PERRO X 18 U", "unidad": "PAQUETE", "precio": 28500},
     {"categoria": "Línea Comidas Rápidas", "codigo": "P236", "nombre": "MANGUERA CACIQUE X21 UND 2,950 GR", "unidad": "PAQUETE", "precio": 29500},
     {"categoria": "Línea Comidas Rápidas", "codigo": "P44", "nombre": "MANGUERA HAMBURGUER X 18 UND 2,500 GR", "unidad": "PAQUETE", "precio": 29500},
@@ -107,6 +106,8 @@ const PRODUCTS_DATA = [
     {"categoria": "Línea Res", "codigo": "P49", "nombre": "GOULASH DE CARNE X KILO", "unidad": "KILO", "precio": 28000},
     {"categoria": "Línea Res", "codigo": "P167", "nombre": "HIGADO DE RES", "unidad": "KILO", "precio": 17000},
     {"categoria": "Línea Res", "codigo": "P74", "nombre": "LENGUA DE RES", "unidad": "KILO", "precio": 24000},
+    {"categoria": "Línea Res", "codigo": "P95", "nombre": "ROLLO DE CARNE ANGUS", "unidad": "KILO", "precio": 28000},
+    {"categoria": "Línea Res", "codigo": "P190", "nombre": "CARNE DE RES MOLIDA", "unidad": "KILO", "precio": 17000},
     {"categoria": "Línea Res", "codigo": "P168", "nombre": "MONDOGO DE RES", "unidad": "KILO", "precio": 17000}
 ];
 

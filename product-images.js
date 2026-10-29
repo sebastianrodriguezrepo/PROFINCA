@@ -41,7 +41,7 @@ const PRODUCT_IMAGES = {
     "P162": "img/P162.png",
     "P163": "img/P163.png",
     "P167": "img/P167.avif",
-    "P168": "img/P168.jpg",
+    "P168": "img/P168.jpeg",
     "P170": "img/P170.jpg",
     "P173": "img/P173.jpg",
     "P174": "img/P174.jpg",
@@ -98,6 +98,7 @@ const PRODUCT_IMAGES = {
     "P93": "img/P93.png",
     "P94": "img/P94.png",
     "P95": "img/P95.jpg",
+    "P190": "img/p190.jpeg"
 };
 
 function getProductImageUrl(codigo) {
