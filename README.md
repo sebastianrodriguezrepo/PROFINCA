@@ -26,4 +26,3 @@ ya que esta pagina web puede brindarle nuevas ventas.
 
 Desde este link se puede ver lo creado 
 
-https://profincabca.netlify.app/
