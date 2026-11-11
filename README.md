@@ -24,5 +24,9 @@ La pagina web permite:
 Este proyecto lo hice para familializarme con la creacion de paginas webs, poco a poco ir avazando, tambien lo hice para poder ayudar a esta microempresa,
 ya que esta pagina web puede brindarle nuevas ventas.
 
+Tambien cuenta con la funcionalidad en el codigo que conecta con vercel, para ver el analisis de cuantos usuarios entran, y cuantas veces entran por un rango de tiempo.
+
 Desde este link se puede ver lo creado 
+
+https://profincajirethbca.vercel.app/
 
